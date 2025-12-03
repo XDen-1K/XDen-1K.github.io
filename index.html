@@ -12,13 +12,8 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-PYVRSFMDRL');
   </script>
 
@@ -39,452 +34,563 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <!-- 自定义样式 -->
+  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    .footer .icon-link {
+      font-size: 25px;
+      color: #000;
+    }
+
+    .link-block a {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .dnerf {
+      font-variant: normal;
+    }
+
+    /* 结果轮播区域 */
+    .result-carousel {
+      position: relative;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+
+    .result-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .result-slide {
+      min-width: 100%;
+      padding: 1rem 0;
+    }
+
+    .result-video {
+      width: 100%;
+      height: auto;
+      max-height: 600px;
+    }
+
+    .result-controls {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .result-dots {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;        /* 如果名字长会自动换行 */
+    }
+
+    /* 每个“圆点 + 名字”的按钮容器 */
+    .result-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    /* 圆点本体 */
+    .dot-circle {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid #666;
+      background: transparent;
+    }
+
+    /* 选中的圆点高亮 */
+    .result-dot.is-active .dot-circle {
+      background: #666;
+    }
+
+    /* 文字标签 */
+    .dot-label {
+      white-space: nowrap;  /* 不想换行的话保留；如果太挤可以删掉 */
+    }
+
+
+    .teaser .hero-body {
+      padding-top: 0;
+      padding-bottom: 3rem;
+    }
+
+    .teaser {
+      font-family: 'Google Sans', sans-serif;
+    }
+
+    .publication-title {
+      text-align: center;
+      margin-left: 2rem;
+    }
+
+    .publication-video {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%;
+      overflow: hidden;
+      border-radius: 10px !important;
+    }
+
+    .publication-video iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .interpolation-panel {
+      background: #f5f5f5;
+      border-radius: 10px;
+    }
+
+    .interpolation-panel .interpolation-image {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .interpolation-panel .slider {
+      margin: 0 !important;
+    }
+
+    #interpolation-image-wrapper {
+      width: 100%;
+    }
+
+    #interpolation-image-wrapper img {
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</nav>
-
-
+<!-- 标题 -->
 <section class="hero">
   <div class="hero-body">
+    <div class="container">
+      <h1 class="title is-1 publication-title">
+        XDen-1K: A Density Field Dataset of Real World Objects
+      </h1>
+    </div>
+
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
-            <span class="author-block">
-              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
+
+          <div class="is-size-5 publication-authors mt-4 mt-5">
+            Anonymous Author
+          </div>
+
+          <div class="publication-links mt-5">
+            <!-- PDF Link. -->
+            <span class="link-block">
+              <a href="https://XDen-1K.github.io"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fas fa-file-pdf"></i>
+                </span>
+                <span>Paper</span>
+              </a>
             </span>
-            <span class="author-block">
-              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
+            <span class="link-block">
+              <a href="https://XDen-1K.github.io"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="ai ai-arxiv"></i>
+                </span>
+                <span>arXiv</span>
+              </a>
             </span>
-            <span class="author-block">
-              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
+            <!-- Video Link. -->
+            <span class="link-block">
+              <a href="https://www.youtube.com/watch?v=O7O_rQPbCgI"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fab fa-youtube"></i>
+                </span>
+                <span>Video</span>
+              </a>
             </span>
-            <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
+            <!-- Dataset Link. -->
+            <span class="link-block">
+              <a href="https://XDen-1K.github.io"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="far fa-images"></i>
+                </span>
+                <span>Data</span>
+              </a>
             </span>
           </div>
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Washington,</span>
-            <span class="author-block"><sup>2</sup>Google Research</span>
-          </div>
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <!-- Dataset Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
-            </div>
-
-          </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
+<!-- Teaser -->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
+       <img id="teaser"
+           src="./static/imgs/teaser.png"
+           alt="XDen-1K teaser"
+           height="100%">
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
+        <span class="dnerf">
+          We present XDen-1K, a multi-modal dataset of real world objects. Each object has its mesh,
+          X-ray map and reconstructed density field.
+        </span>
       </h2>
     </div>
   </div>
 </section>
 
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
+<!-- Abstract -->
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
+            A deep understanding of the physical world is essential for embodied AI and realistic simulation.
+            Current models capture surface geometry and appearance but largely ignore internal physical properties.
+            This gap is critical, since volumetric density underlies an object's mass distribution, stability, and
+            interaction dynamics in tasks like robotic manipulation and physical simulation.
+            To bridge this gap, we introduce XDen-1K, the first large-scale, multi-modal dataset designed for real-world
+            physical property estimation, with a particular focus on volumetric density. The core of this dataset
+            consists of 1,000 real-world objects across 148 categories, for which we provide comprehensive multi-modal
+            data: a high-resolution 3D geometric model with part-level annotations, a corresponding set of real-world
+            biplanar X-ray scans. Building upon this data, we introduce a novel optimization framework that recovers a
+            high-fidelity physical density field of the object from its sparse X-ray scans.
           </p>
           <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
+            To demonstrate its practical value, we add X-ray image as condition to existing segmentation network to
+            perform a task on volumetric segmentation. We also conducted experiments on downstream robotics tasks.
+            The results show that leveraging the dataset can effectively improve the accuracy of center of mass
+            estimation and the success rate of robotic manipulation. We believe XDen-1K will serve as a foundational
+            resource and a challenging new benchmark, catalyzing future research in physically-grounded visual
+            inference, X-ray vision and embodied AI.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
 
-    <!-- Paper video. -->
+    <!-- Paper video -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Video</h2>
         <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <iframe width="560" height="315"
+                  src="https://www.youtube.com/embed/O7O_rQPbCgI?si=hfPRrJ7W2FxSS6Mm"
+                  title="YouTube video player" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
     </div>
-    <!--/ Paper video. -->
   </div>
 </section>
 
-
+<!-- Pipeline + Dataset + Application -->
 <section class="section">
   <div class="container is-max-desktop">
+    <h2 class="title is-2">Data Collection Pipeline</h2>
 
     <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
       <div class="column">
         <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
+          <img src="static/imgs/pipeline.jpg" alt="Pipeline">
           <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
+            For every collected real-world object, we first use a bi-planar X-ray machine to capture the object's
+            X-ray map. Then, we reconstruct its mesh with a multi-view generation method and segment it into parts.
+            Based on the captured X-ray map and recovered segmented mesh, we develop a differentiable X-ray rendering
+            process to estimate a density field of the given mesh.
           </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
         </div>
       </div>
-      <!--/ Visual Effects. -->
+    </div>
 
-      <!-- Matting. -->
+    <h2 class="title is-3">Differentiable X-ray Rendering</h2>
+    <div class="columns is-vcentered">
+      <div class="column is-half">
+        <video id="dollyzoom" autoplay controls muted loop playsinline class="dolly-video">
+          <source src="./static/vids/optimization.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
       <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
-        </div>
+        <p>
+          The density estimation task is formulated as a differentiable X-ray reconstruction problem.
+          Given a voxelized mesh with an initialized linear attenuation coefficient (LAC) for each part,
+          bi-planar X-ray images are rendered according to the Beer–Lambert law. The LACs are then optimized
+          by minimizing the discrepancy between the rendered and captured (ground-truth) bi-planar X-ray images.
+          Finally, the optimized LACs are approximately converted into density to obtain a volumetric density field.
+        </p>
       </div>
     </div>
-    <!--/ Matting. -->
 
-    <!-- Animation. -->
+    <h2 class="title is-2" style="margin-top: 3rem">XDen-1K Dataset</h2>
     <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
+      <div class="column">
+        <div class="content">
+          <img src="static/imgs/gallery.jpg" alt="Gallery">
           <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
+            For every object in our XDen-1K dataset, it contains image, scanned biplanar X-ray image,
+            density field and approximately reconstructed density field.
           </p>
         </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
       </div>
     </div>
-    <!--/ Animation. -->
 
-
-    <!-- Concurrent Work. -->
     <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
-        </div>
+      <div class="column">
+        <figure class="image">
+          <img src="static/imgs/table.jpg" alt="RGB images">
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="image">
+          <img src="static/imgs/stats.png" alt="Biplanar X-ray images">
+        </figure>
       </div>
     </div>
-    <!--/ Concurrent Work. -->
 
+    <div class="content">
+      <p>
+        <b>Stats of XDen-1K Dataset:</b> Our dataset contains <b>1000</b> real-world objects and spans
+        <b>148</b> categories, covering a broad spectrum of everyday items such as tools, kitchenware,
+        and electronics, providing rich variation in <b>geometry</b>, <b>size</b> and <b>materials</b>.
+      </p>
+    </div>
+
+    <h2 class="title is-2" style="margin-top: 4rem">XDen-1K Application</h2>
+    <h2 class="title is-3" style="margin-top: 1rem">X-ray-conditioned volume segmentation</h2>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <img src="static/imgs/segmentation.jpg" alt="X-Field Pipeline">
+          <p>
+            X-ray image contains collapsed depth information which reveals internal material information
+            and can guide the prediction of volumetric segmentation and density estimation in a physically
+            grounded way. Thus, we propose <b>X-Field</b>, adapting
+            <a href="https://research.nvidia.com/labs/toronto-ai/partfield-release">PartField</a>,
+            a strong part-aware feature extractor, to address volumetric density estimation.
+            We additionally collect a synthetic dataset to train our X-Field. The volumetric density
+            can then be clustered into material-aware parts.
+          </p>
+          <img src="static/imgs/result.jpg" style="margin-top: 2rem" alt="X-Field result">
+        </div>
+        <p>
+          We then test the volumetric segmentation ability of X-Field, our X-ray conditioned model and the
+          original PartField on both synthetic and real datasets. The results show that with X-ray as condition,
+          the model can perform better in volumetric segmentation and especially inner structure prediction.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- CoM-aware Robot Manipulation + 轮播 -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3" style="margin-top: -2rem">CoM-aware Robot Manipulation</h2>
 
+    <div class="result-carousel">
+      <div class="result-track">
+
+        <!-- Slide 1 -->
+        <div class="result-slide">
+          <div class="columns is-vcentered">
+            <div class="column is-one-third">
+              <figure class="image">
+                <img src="static/imgs/result1.jpg" alt="Result 1 image">
+              </figure>
+            </div>
+            <div class="column is-two-thirds">
+              <video controls muted loop class="result-video">
+                <source src="static/vids/result1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="result-slide">
+          <div class="columns is-vcentered">
+            <div class="column is-one-third">
+              <figure class="image">
+                <img src="static/imgs/result2.jpg" alt="Result 2 image">
+              </figure>
+            </div>
+            <div class="column is-two-thirds">
+              <video controls muted loop class="result-video">
+                <source src="static/vids/result2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="result-slide">
+          <div class="columns is-vcentered">
+            <div class="column is-one-third">
+              <figure class="image">
+                <img src="static/imgs/result3.jpg" alt="Result 3 image">
+              </figure>
+            </div>
+            <div class="column is-two-thirds">
+              <video controls muted loop class="result-video">
+                <source src="static/vids/result3.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 控制区 -->
+      <div class="result-controls">
+        <button class="button is-medium" id="prevSlide">⟨</button>
+
+        <div class="result-dots">
+          <button class="result-dot is-active" data-index="0" aria-label="Result 1">
+            <span class="dot-circle"></span>
+            <span class="dot-label">Pick</span>
+          </button>
+          <button class="result-dot" data-index="1" aria-label="Result 2">
+            <span class="dot-circle"></span>
+            <span class="dot-label">Place</span>
+          </button>
+          <button class="result-dot" data-index="2" aria-label="Result 3">
+            <span class="dot-circle"></span>
+            <span class="dot-label">Push</span>
+          </button>
+        </div>
+
+        <button class="button is-medium" id="nextSlide">⟩</button>
+      </div>
+
+    </div>
+    <br>
+    <br>
+    <div class="columns is-centered">
+      <div class="column">
+    <div class="content">
+    <p>
+      Physical properties like Center of Mass (CoM), Moment of Inertia can be easily evaulated with density field data.To study how the center of mass influences manipulation outcomes, we conduct three representative experiments on 
+a Franka Emika Panda robotic arm equipped with a parallel gripper. 
+
+    <br>
+      <b>Pick :</b> When the grasp point is off the center of mass, a moment is generated that makes the hammer rotate. This causes the hammer to rotate under off-center grasp, while grasp near the center of mass remain stable
+    
+    <br>
+      <b>Place :</b> When the center of mass lies away from the contact point, gravity generates a moment causing the cup to fall or stand depending on their relative position. The cup tips when placed with large tile angle and stays upright with small tile angle
+      
+    <br>
+      <b>Push :</b> When the push point is higher than the center of mass, it generates a moment about the contact point, making the bottle fall. High pushes lead to tipping, whereas lower pushes produce stable motion.
+
+    </p>
+    </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
-}</code></pre>
+    Coming Soon
+</code></pre>
   </div>
 </section>
 
-
+<!-- Footer -->
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
+       <div class="content">
           <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
+            Page template from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
           </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
-        </div>
-      </div>
-    </div>
+     </div>
   </div>
 </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const track = document.querySelector('.result-track');
+    const slides = document.querySelectorAll('.result-slide');
+    const dots = document.querySelectorAll('.result-dot');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    function goToSlide(index) {
+      if (!track) return;
+      currentIndex = (index + totalSlides) % totalSlides;
+      const offset = -currentIndex * 100;
+      track.style.transform = `translateX(${offset}%)`;
+
+      dots.forEach((dot, i) => {
+        if (i === currentIndex) {
+          dot.classList.add('is-active');
+        } else {
+          dot.classList.remove('is-active');
+        }
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        goToSlide(currentIndex - 1);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        goToSlide(currentIndex + 1);
+      });
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const idx = Number(dot.dataset.index);
+        goToSlide(idx);
+      });
+    });
+
+    goToSlide(0);
+  });
+</script>
 
 </body>
 </html>

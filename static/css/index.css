@@ -14,14 +14,19 @@ body {
 }
 
 .dnerf {
-  font-variant: small-caps;
+  font-variant: normal;
 }
+
+
 
 
 .teaser .hero-body {
   padding-top: 0;
   padding-bottom: 3rem;
 }
+/* .hero .container.is-max-desktop {
+  max-width: 100%;      
+} */
 
 .teaser {
   font-family: 'Google Sans', sans-serif;
@@ -29,6 +34,8 @@ body {
 
 
 .publication-title {
+  text-align: center;
+  margin-left:2rem;
 }
 
 .publication-banner {
