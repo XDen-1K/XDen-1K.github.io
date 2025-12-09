@@ -178,11 +178,18 @@
     #interpolation-image-wrapper img {
       border-radius: 5px;
     }
+    section.section:nth-of-type(n + 4) .content {
+      font-size: 1.05rem;  
+      line-height: 1.5;     
+    }
+
+    section.section:nth-of-type(n + 4) .content p {
+      margin-bottom: 1.2em;
+    }
   </style>
 </head>
 <body>
 
-<!-- 标题 -->
 <section class="hero">
   <div class="hero-body">
     <div class="container">
@@ -190,13 +197,44 @@
         XDen-1K: A Density Field Dataset of Real World Objects
       </h1>
     </div>
-
-    <div class="container is-max-desktop">
+    <br>
+        <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-
-          <div class="is-size-5 publication-authors mt-4 mt-5">
-            Anonymous Author
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Jingxuan Zhang<sup>*</sup>,</span>
+            <span class="author-block">
+              Tianqi Yu<sup>*</sup>,</span>
+            <span class="author-block">
+              Yatu Zhang<sup>*</sup>,
+            </span>
+            <span class="author-block">
+              Jinze Wu,
+            </span>
+            <span class="author-block">
+             <a href="https://yaokxx.github.io/">Kaixin Yao</a>,
+            </span>
+            <span class="author-block">
+              Jingyang Liu,
+            </span>
+            <br>
+            <span class="author-block">
+              <a href="https://sist.shanghaitech.edu.cn/zhangyy8_en/main.htm">Yuyao Zhang</a><sup>&#8224;</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://jiayuan-gu.github.io/">Jiayuan Gu</a><sup>&#8224;</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.yu-jingyi.com/">Jingyi Yu</a><sup>&#8224;</sup>
+            </span>
+          </div>
+          
+          <div class="column has-text-centered">
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">ShanghaiTech University
+          </div>
+            <p><sup>*</sup>Equal Contribution, <sup>&#8224;</sup>Corresponding Authors</p>
           </div>
 
           <div class="publication-links mt-5">
@@ -221,7 +259,7 @@
             </span>
             <!-- Video Link. -->
             <span class="link-block">
-              <a href="https://www.youtube.com/watch?v=O7O_rQPbCgI"
+              <a href="https://www.youtube.com/watch?v=HR3yNC56O1M"
                  class="external-link button is-normal is-rounded is-dark">
                 <span class="icon">
                   <i class="fab fa-youtube"></i>
@@ -231,7 +269,7 @@
             </span>
             <!-- Dataset Link. -->
             <span class="link-block">
-              <a href="https://XDen-1K.github.io"
+              <a href="https://huggingface.co/datasets/zhangjxx/XDen-1K"
                  class="external-link button is-normal is-rounded is-dark">
                 <span class="icon">
                   <i class="far fa-images"></i>
@@ -302,11 +340,7 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Video</h2>
         <div class="publication-video">
-          <iframe width="560" height="315"
-                  src="https://www.youtube.com/embed/O7O_rQPbCgI?si=hfPRrJ7W2FxSS6Mm"
-                  title="YouTube video player" frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/HR3yNC56O1M?si=Eyhvgm-t75-eZqGP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -317,11 +351,13 @@
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-2">Data Collection Pipeline</h2>
-
+    <br>
     <div class="columns is-centered">
       <div class="column">
         <div class="content">
           <img src="static/imgs/pipeline.jpg" alt="Pipeline">
+          <br>
+          <br>
           <p>
             For every collected real-world object, we first use a bi-planar X-ray machine to capture the object's
             X-ray map. Then, we reconstruct its mesh with a multi-view generation method and segment it into parts.
@@ -344,9 +380,9 @@
         <p>
           The density estimation task is formulated as a differentiable X-ray reconstruction problem.
           Given a voxelized mesh with an initialized linear attenuation coefficient (LAC) for each part,
-          bi-planar X-ray images are rendered according to the Beer–Lambert law. The LACs are then optimized
+          bi-planar X-ray images are rendered according to the Beer-Lambert law. The LAC are then optimized
           by minimizing the discrepancy between the rendered and captured (ground-truth) bi-planar X-ray images.
-          Finally, the optimized LACs are approximately converted into density to obtain a volumetric density field.
+          Finally, the optimized LAC are approximately converted into density to obtain a volumetric density field.
         </p>
       </div>
     </div>
@@ -357,7 +393,7 @@
         <div class="content">
           <img src="static/imgs/gallery.jpg" alt="Gallery">
           <p>
-            For every object in our XDen-1K dataset, it contains image, scanned biplanar X-ray image,
+            <b>Gallery of XDen-1K Dataset</b> For every object in our XDen-1K dataset, it contains image, scanned biplanar X-ray image,
             density field and approximately reconstructed density field.
           </p>
         </div>
@@ -398,7 +434,7 @@
             grounded way. Thus, we propose <b>X-Field</b>, adapting
             <a href="https://research.nvidia.com/labs/toronto-ai/partfield-release">PartField</a>,
             a strong part-aware feature extractor, to address volumetric density estimation.
-            We additionally collect a synthetic dataset to train our X-Field. The volumetric density
+            We additionally collect a synthetic dataset based on <a href="https://authoritywang.github.io/partnext/">PartNeXt</a>to train our X-Field. The volumetric density
             can then be clustered into material-aware parts.
           </p>
           <img src="static/imgs/result.jpg" style="margin-top: 2rem" alt="X-Field result">
@@ -539,6 +575,7 @@ a Franka Emika Panda robotic arm equipped with a parallel gripper.
           <p>
             Page template from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
           </p>
+        Send question and feedback to Jingxuan Zhang. Mail: zhangjx12023@shanghaitech.edu.cn
      </div>
   </div>
 </footer>
