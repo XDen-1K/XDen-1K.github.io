@@ -312,25 +312,12 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            A deep understanding of the physical world is essential for embodied AI and realistic simulation.
-            Current models capture surface geometry and appearance but largely ignore internal physical properties.
-            This gap is critical, since volumetric density underlies an object's mass distribution, stability, and
-            interaction dynamics in tasks like robotic manipulation and physical simulation.
-            To bridge this gap, we introduce XDen-1K, the first large-scale, multi-modal dataset designed for real-world
-            physical property estimation, with a particular focus on volumetric density. The core of this dataset
-            consists of 1,000 real-world objects across 148 categories, for which we provide comprehensive multi-modal
-            data: a high-resolution 3D geometric model with part-level annotations, a corresponding set of real-world
-            biplanar X-ray scans. Building upon this data, we introduce a novel optimization framework that recovers a
-            high-fidelity physical density field of the object from its sparse X-ray scans.
+
+          A deep understanding of the physical world is a central goal for embodied AI and realistic simulation. While current models excel at capturing an object's surface geometry and appearance, they largely neglect its internal physical properties. This omission is critical, as properties like volumetric density are fundamental for predicting an object's center of mass, stability, and interaction dynamics in applications ranging from robotic manipulation to physical simulation. The primary bottleneck has been the absence of large-scale, real-world data.
           </p>
           <p>
-            To demonstrate its practical value, we add X-ray image as condition to existing segmentation network to
-            perform a task on volumetric segmentation. We also conducted experiments on downstream robotics tasks.
-            The results show that leveraging the dataset can effectively improve the accuracy of center of mass
-            estimation and the success rate of robotic manipulation. We believe XDen-1K will serve as a foundational
-            resource and a challenging new benchmark, catalyzing future research in physically-grounded visual
-            inference, X-ray vision and embodied AI.
-          </p>
+          To bridge this gap, we introduce XDen-1K, the first large-scale, multi-modal dataset designed for real-world physical property estimation, with a particular focus on volumetric density. The core of this dataset consists of 1,000 real-world objects across 148 categories, for which we provide comprehensive multi-modal data, including a high-resolution 3D geometric model with part-level annotations and a corresponding set of real-world biplanar X-ray scans. Building upon this data, we introduce a novel optimization framework that recovers a high-fidelity volumetric density field of each object from its sparse X-ray views. To further enhance the dataset's versatility, we have additionally annotated approximately 7.6k synthetic objects and collected 20 CT scans, successfully integrating the real-world X-ray scans, high-precision CT validation, and large-scale synthetic data. To demonstrate its practical value, we add X-ray images as a conditioning signal to an existing segmentation network and perform volumetric segmentation. Furthermore, we conduct experiments on downstream robotics tasks. The results show that leveraging the dataset can effectively improve the accuracy of center-of-mass estimation and the success rate of robotic manipulation. We believe XDen-1K will serve as a foundational resource and a challenging new benchmark, catalyzing future research in physically grounded visual inference and embodied AI.
+            </p>
         </div>
       </div>
     </div>
