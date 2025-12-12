@@ -296,8 +296,8 @@
            height="100%">
       <h2 class="subtitle has-text-centered">
         <span class="dnerf">
-          We present XDen-1K, a multi-modal dataset of real world objects. Each object has its mesh,
-          X-ray map and reconstructed density field.
+           We present XDen-1K, a multi-modal dataset of real-world objects, featuring paired biplanar X-ray scans and reconstructed
+density fields.
         </span>
       </h2>
     </div>
@@ -421,7 +421,7 @@
             grounded way. Thus, we propose <b>X-Field</b>, adapting
             <a href="https://research.nvidia.com/labs/toronto-ai/partfield-release">PartField</a>,
             a strong part-aware feature extractor, to address volumetric density estimation.
-            We additionally collect a synthetic dataset based on <a href="https://authoritywang.github.io/partnext/">PartNeXt</a>to train our X-Field. The volumetric density
+            We additionally collect a synthetic dataset based on <a href="https://authoritywang.github.io/partnext/">PartNeXt</a> to train our X-Field. The volumetric density
             can then be clustered into material-aware parts.
           </p>
           <img src="static/imgs/result.jpg" style="margin-top: 2rem" alt="X-Field result">
@@ -525,20 +525,14 @@
     <div class="columns is-centered">
       <div class="column">
     <div class="content">
-    <p>
-      Physical properties like Center of Mass (CoM), Moment of Inertia can be easily evaulated with density field data.To study how the center of mass influences manipulation outcomes, we conduct three representative experiments on 
-a Franka Emika Panda robotic arm equipped with a parallel gripper. 
+      Physical properties like Center of Mass (CoM) and Moment of Inertia can be easily evaluated with density-field data. To study how the center of mass influences manipulation outcomes, we conduct three representative experiments on a Franka Emika Panda robotic arm equipped with a parallel gripper.
 
-    <br>
-      <b>Pick :</b> When the grasp point is off the center of mass, a moment is generated that makes the hammer rotate. This causes the hammer to rotate under off-center grasp, while grasp near the center of mass remain stable
-    
-    <br>
-      <b>Place :</b> When the center of mass lies away from the contact point, gravity generates a moment causing the cup to fall or stand depending on their relative position. The cup tips when placed with large tile angle and stays upright with small tile angle
-      
-    <br>
-      <b>Push :</b> When the push point is higher than the center of mass, it generates a moment about the contact point, making the bottle fall. High pushes lead to tipping, whereas lower pushes produce stable motion.
+      Pick: When the grasp point is off the center of mass, a torque is generated that makes the hammer rotate. This causes rotation under off-center grasps, while grasps near the center of mass remain stable.
 
-    </p>
+      Place: When the center of mass lies away from the contact point, gravity generates a torque, causing the cup to tip or stay upright depending on their relative position. The cup tips when placed with a large tilt angle and stays upright with a small tilt angle.
+
+      Push: When the push point is higher than the center of mass, it generates a torque about the contact point, making the bottle fall. High pushes lead to tipping, whereas lower pushes produce stable motion.
+
     </div>
     </div>
     </div>
@@ -549,7 +543,15 @@ a Franka Emika Panda robotic arm equipped with a parallel gripper.
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    Coming Soon
+    @misc{zhang2025xden1kdensityfielddataset,
+      title={XDen-1K: A Density Field Dataset of Real-World Objects}, 
+      author={Jingxuan Zhang and Tianqi Yu and Yatu Zhang and Jinze Wu and Kaixin Yao and Jingyang Liu and Yuyao Zhang and Jiayuan Gu and Jingyi Yu},
+      year={2025},
+      eprint={2512.10668},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2512.10668}, 
+}
 </code></pre>
   </div>
 </section>
